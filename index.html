@@ -3,270 +3,364 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بن عم حسين — ديمو</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<title>بن عم حسين — قهوة مختصة</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f7f3ee; color: #1a0a00; }
+:root{
+  --dark:#0a0500;
+  --dark2:#110800;
+  --gold:#c8782a;
+  --gold2:#e8993a;
+  --gold-light:#f5d08a;
+  --cream:#f5ede0;
+  --cream2:#ede0cc;
+  --text:#1a0800;
+  --muted:#8a6a50;
+  --border:#d8c8b0;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Tajawal',sans-serif;background:#0a0500;color:#fff;overflow-x:hidden;}
 
-  .demo-banner {
-    background: #c8782a;
-    color: #fff;
-    text-align: center;
-    padding: 10px 16px;
-    font-size: 13px;
-    font-weight: 600;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-  }
+/* DEMO */
+.demo-bar{background:var(--gold);color:#fff;text-align:center;padding:8px;font-size:12px;font-weight:700;letter-spacing:.05em;}
 
-  .hero {
-    background: #1a0a00;
-    color: #fff;
-    padding: 60px 24px 48px;
-    text-align: center;
-  }
-  .logo-circle {
-    width: 80px; height: 80px;
-    border-radius: 50%;
-    background: #c8782a;
-    display: flex; align-items: center; justify-content: center;
-    margin: 0 auto 16px;
-    font-size: 26px;
-    font-weight: 700;
-    color: #fff;
-  }
-  .hero h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
-  .hero .subtitle { font-size: 15px; color: #c8a880; margin-bottom: 16px; }
-  .stars { color: #f0b429; font-size: 20px; margin-bottom: 4px; }
-  .rating-text { font-size: 13px; color: #c8a880; margin-bottom: 20px; }
-  .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
-  .badge {
-    background: rgba(200,120,42,0.25);
-    border: 1px solid #c8782a;
-    color: #f0c080;
-    border-radius: 20px;
-    padding: 4px 14px;
-    font-size: 13px;
-  }
+/* NAV */
+nav{position:fixed;top:32px;width:100%;z-index:100;padding:0 24px;transition:background .3s;}
+nav.scrolled{background:rgba(10,5,0,.95);top:0;border-bottom:1px solid rgba(200,120,42,.2);}
+.nav-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:22px;font-weight:900;color:var(--gold);letter-spacing:2px;text-decoration:none;}
+.nav-links{display:flex;gap:24px;list-style:none;}
+.nav-links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:#fff;padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;text-decoration:none;white-space:nowrap;}
 
-  .section {
-    background: #fff;
-    margin: 16px;
-    border-radius: 16px;
-    padding: 24px;
-    border: 1px solid #ede8e0;
-  }
-  .section-title {
-    font-size: 12px;
-    font-weight: 700;
-    color: #888;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    margin-bottom: 18px;
-  }
-  .info-row {
-    display: flex; gap: 14px; align-items: flex-start;
-    margin-bottom: 16px; font-size: 15px;
-  }
-  .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
-  .info-label { font-size: 12px; color: #888; margin-top: 2px; }
-  .open-tag {
-    display: inline-block;
-    background: #e8f5e0;
-    color: #3a7a1a;
-    font-size: 12px;
-    padding: 2px 10px;
-    border-radius: 10px;
-    margin-bottom: 4px;
-    font-weight: 600;
-  }
+/* HERO */
+.hero{min-height:100vh;background:var(--dark);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 24px 80px;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(200,120,42,.12) 0%,transparent 70%);}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(200,120,42,.4);color:var(--gold-light);padding:6px 16px;border-radius:4px;font-size:12px;font-weight:600;letter-spacing:.1em;margin-bottom:24px;}
+.hero-badge span{width:6px;height:6px;background:var(--gold);border-radius:50%;display:inline-block;}
+.hero h1{font-size:clamp(40px,8vw,72px);font-weight:900;line-height:1.1;margin-bottom:16px;letter-spacing:-1px;}
+.hero h1 em{color:var(--gold);font-style:normal;}
+.hero-sub{font-size:16px;color:rgba(255,255,255,.5);letter-spacing:3px;font-weight:300;margin-bottom:32px;text-transform:uppercase;}
+.hero-rating{display:flex;align-items:center;gap:8px;justify-content:center;margin-bottom:40px;}
+.hero-stars{color:#f0b429;font-size:18px;letter-spacing:3px;}
+.hero-rating-text{font-size:13px;color:rgba(255,255,255,.5);}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;}
+.btn-primary{background:var(--gold);color:#fff;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;font-family:'Tajawal',sans-serif;}
+.btn-outline{border:1px solid rgba(255,255,255,.2);color:#fff;padding:14px 32px;border-radius:8px;font-size:15px;font-weight:600;text-decoration:none;}
+.hero-scroll{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.3);font-size:22px;animation:bounce 2s infinite;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
 
-  .menu-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 12px;
-  }
-  .menu-card {
-    background: #faf7f2;
-    border-radius: 12px;
-    padding: 16px;
-    border: 1px solid #ede8e0;
-    text-align: center;
-  }
-  .menu-emoji { font-size: 30px; margin-bottom: 8px; }
-  .menu-name { font-size: 14px; font-weight: 700; color: #1a0a00; }
-  .menu-price { font-size: 13px; color: #c8782a; font-weight: 600; margin-top: 4px; }
-  .menu-note { font-size: 12px; color: #888; margin-top: 2px; }
-  .menu-note-bottom {
-    font-size: 11px; color: #aaa; text-align: center; margin-top: 12px;
-  }
+/* ABOUT */
+.about{background:var(--cream);padding:80px 24px;color:var(--text);}
+.container{max-width:900px;margin:0 auto;}
+.section-label{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-size:clamp(24px,4vw,36px);font-weight:900;line-height:1.2;margin-bottom:20px;color:var(--text);}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start;margin-top:48px;}
+@media(max-width:600px){.about-grid{grid-template-columns:1fr;}.nav-links{display:none;}}
+.about-text p{font-size:15px;color:var(--muted);line-height:1.8;margin-bottom:16px;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;}
+.stat-num{font-size:32px;font-weight:900;color:var(--gold);}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;}
+.features{display:flex;flex-direction:column;gap:20px;margin-top:32px;}
+.feature{display:flex;gap:14px;align-items:flex-start;}
+.feat-num{font-size:11px;font-weight:900;color:var(--gold);width:28px;height:28px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.feat-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.feat-desc{font-size:13px;color:var(--muted);line-height:1.6;}
 
-  .qr-section {
-    background: #1a0a00;
-    margin: 16px;
-    border-radius: 16px;
-    padding: 28px 24px;
-    display: flex;
-    gap: 20px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .qr-box {
-    background: #fff;
-    border-radius: 10px;
-    padding: 10px;
-    flex-shrink: 0;
-  }
-  .qr-text h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-  .qr-text p { font-size: 13px; color: #c8a880; line-height: 1.6; }
+/* MENU */
+.menu-sec{background:var(--dark2);padding:80px 24px;}
+.menu-sec .section-title{color:#fff;}
+.menu-sec .section-label{color:var(--gold);}
+.menu-tabs{display:flex;gap:8px;margin:32px 0 24px;flex-wrap:wrap;}
+.tab{padding:8px 20px;border-radius:6px;font-size:13px;font-weight:700;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.5);cursor:pointer;font-family:'Tajawal',sans-serif;background:transparent;transition:all .2s;}
+.tab.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+.menu-group{display:none;}
+.menu-group.visible{display:block;}
+.menu-list{display:flex;flex-direction:column;}
+.menu-item{display:flex;justify-content:space-between;align-items:center;padding:16px 0;border-bottom:1px solid rgba(255,255,255,.06);}
+.menu-item:last-child{border:none;}
+.mi-info{}
+.mi-name{font-size:15px;font-weight:700;color:#fff;}
+.mi-desc{font-size:12px;color:rgba(255,255,255,.35);margin-top:3px;}
+.mi-price{font-size:14px;font-weight:700;color:var(--gold);white-space:nowrap;background:rgba(200,120,42,.12);padding:5px 12px;border-radius:6px;border:1px solid rgba(200,120,42,.2);}
 
-  .cta-btn {
-    display: block;
-    margin: 0 16px 16px;
-    background: #c8782a;
-    color: #fff;
-    border: none;
-    border-radius: 14px;
-    padding: 16px;
-    font-size: 16px;
-    font-weight: 700;
-    text-align: center;
-    cursor: pointer;
-    text-decoration: none;
-    font-family: inherit;
-  }
-  .cta-btn:hover { background: #a8621f; }
+/* REVIEWS */
+.reviews-sec{background:var(--cream);padding:80px 24px;color:var(--text);}
+.reviews-top{display:flex;gap:40px;align-items:center;margin-bottom:40px;flex-wrap:wrap;}
+.big-num{font-size:80px;font-weight:900;color:var(--gold);line-height:1;}
+.rating-info{}
+.rating-stars{color:#f0b429;font-size:24px;margin-bottom:6px;}
+.rating-label{font-size:14px;color:var(--muted);}
+.bars{display:flex;flex-direction:column;gap:6px;margin-top:12px;}
+.bar-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);}
+.bar-track{width:100px;height:5px;background:var(--cream2);border-radius:3px;overflow:hidden;}
+.bar-fill{height:100%;background:#f0b429;border-radius:3px;}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;}
+.review-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.rv-header{display:flex;gap:10px;align-items:center;margin-bottom:12px;}
+.rv-av{width:40px;height:40px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0;}
+.rv-name{font-size:14px;font-weight:700;color:var(--text);}
+.rv-date{font-size:11px;color:var(--muted);}
+.rv-stars{color:#f0b429;font-size:13px;margin-right:auto;}
+.rv-text{font-size:13px;color:#4a3020;line-height:1.7;}
+.rv-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
+.rv-tag{background:var(--cream2);color:var(--muted);font-size:10px;font-weight:700;padding:3px 8px;border-radius:4px;}
 
-  .footer {
-    text-align: center;
-    padding: 24px 16px;
-    font-size: 12px;
-    color: #aaa;
-  }
+/* CONTACT */
+.contact-sec{background:var(--dark);padding:80px 24px;}
+.contact-sec .section-title{color:#fff;}
+.contact-sec .section-label{color:var(--gold);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:40px;align-items:start;}
+@media(max-width:600px){.contact-grid{grid-template-columns:1fr;}}
+.info-cards{display:flex;flex-direction:column;gap:12px;}
+.info-card{display:flex;gap:14px;align-items:flex-start;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;}
+.ic-icon{font-size:20px;flex-shrink:0;}
+.ic-label{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:.05em;margin-bottom:4px;}
+.ic-value{font-size:14px;color:#fff;font-weight:600;line-height:1.5;}
+.cta-box{background:rgba(200,120,42,.08);border:1px solid rgba(200,120,42,.2);border-radius:12px;padding:28px;text-align:center;}
+.cta-box h3{font-size:20px;font-weight:900;color:#fff;margin-bottom:8px;}
+.cta-box p{font-size:13px;color:rgba(255,255,255,.4);margin-bottom:24px;line-height:1.6;}
+.wa-btn{display:block;background:#128C7E;color:#fff;padding:14px;border-radius:8px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:10px;}
+.map-btn{display:block;border:1px solid rgba(200,120,42,.3);color:var(--gold-light);padding:12px;border-radius:8px;font-size:14px;font-weight:600;text-decoration:none;}
 
-  @media (max-width: 480px) {
-    .qr-section { justify-content: center; text-align: center; }
-  }
+/* FOOTER */
+footer{background:#050200;border-top:1px solid rgba(255,255,255,.05);text-align:center;padding:20px;font-size:12px;color:rgba(255,255,255,.2);}
 </style>
 </head>
 <body>
 
-<div class="demo-banner">⚠️ هذا ديمو تجريبي — يعرض الشكل الأساسي للموقع قبل إضافة التفاصيل الحقيقية</div>
+<div class="demo-bar">⚠ ديمو تجريبي — للعرض فقط قبل الإطلاق الرسمي</div>
 
-<div class="hero">
-  <div class="logo-circle">ع.ح</div>
-  <h1>بن عم حسين</h1>
-  <p class="subtitle">كولومبي · هندي · برازيلي · إندونيسي</p>
-  <div class="stars">★★★★½</div>
-  <p class="rating-text">4.6 من 11 تقييم على Google</p>
-  <div class="badge-row">
-    <span class="badge">قهوة مختصة</span>
-    <span class="badge">جو مريح</span>
-    <span class="badge">شبين الكوم</span>
+<nav id="mainNav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">ع.ح</a>
+    <ul class="nav-links">
+      <li><a href="#about">عن الكافيه</a></li>
+      <li><a href="#menu">المنيو</a></li>
+      <li><a href="#reviews">التقييمات</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+    <a href="https://wa.me/01008094131" class="nav-cta">تواصل معنا</a>
   </div>
-</div>
+</nav>
 
-<div class="section">
-  <div class="section-title">معلومات المحل</div>
-  <div class="info-row">
-    <span class="info-icon">📍</span>
-    <div>
-      <div>طلعت حرب، قسم شبين الكوم</div>
-      <div class="info-label">منوفية</div>
-    </div>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-badge"><span></span>مفتوح دلوقتي · يغلق ١٢ منتصف الليل</div>
+  <h1>بن <em>عم حسين</em></h1>
+  <p class="hero-sub">Specialty Coffee · Shibin El Kom</p>
+  <div class="hero-rating">
+    <span class="hero-stars">★★★★★</span>
+    <span class="hero-rating-text">4.6 من 11 تقييم على Google</span>
   </div>
-  <div class="info-row">
-    <span class="info-icon">🕐</span>
-    <div>
-      <div class="open-tag">مفتوح</div>
-      <div>٩ صباحاً – ١٢ منتصف الليل</div>
-    </div>
+  <div class="hero-btns">
+    <a href="#menu" class="btn-primary">شوف المنيو</a>
+    <a href="#contact" class="btn-outline">تواصل معنا</a>
   </div>
-  <div class="info-row">
-    <span class="info-icon">📞</span>
-    <div>
-      <div>010 08094131</div>
-      <div class="info-label">اتصل أو واتساب</div>
-    </div>
-  </div>
-  <div class="info-row">
-    <span class="info-icon">💰</span>
-    <div>
-      <div>١ – ٢٠٠ جنيه للشخص</div>
-      <div class="info-label">متوسط السعر</div>
-    </div>
-  </div>
-</div>
+  <div class="hero-scroll">↓</div>
+</section>
 
-<div class="section">
-  <div class="section-title">من المنيو</div>
-  <div class="menu-grid">
-    <div class="menu-card">
-      <div class="menu-emoji">☕</div>
-      <div class="menu-name">إسبريسو</div>
-      <div class="menu-price">٢٥ جنيه</div>
-      <div class="menu-note">بن كولومبي</div>
-    </div>
-    <div class="menu-card">
-      <div class="menu-emoji">🥛</div>
-      <div class="menu-name">لاتيه</div>
-      <div class="menu-price">٤٥ جنيه</div>
-      <div class="menu-note">حليب طازج</div>
-    </div>
-    <div class="menu-card">
-      <div class="menu-emoji">🫖</div>
-      <div class="menu-name">هندي</div>
-      <div class="menu-price">٣٥ جنيه</div>
-      <div class="menu-note">مزيج خاص</div>
-    </div>
-    <div class="menu-card">
-      <div class="menu-emoji">🧊</div>
-      <div class="menu-name">آيس كوفي</div>
-      <div class="menu-price">٥٥ جنيه</div>
-      <div class="menu-note">بارد ومنعش</div>
-    </div>
-    <div class="menu-card">
-      <div class="menu-emoji">🫘</div>
-      <div class="menu-name">برازيلي</div>
-      <div class="menu-price">٣٠ جنيه</div>
-      <div class="menu-note">بن أصيل</div>
-    </div>
-    <div class="menu-card">
-      <div class="menu-emoji">🌿</div>
-      <div class="menu-name">إندونيسي</div>
-      <div class="menu-price">٤٠ جنيه</div>
-      <div class="menu-note">نكهة خاصة</div>
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="section-label">من نحن</div>
+    <div class="section-title">لأصحاب الذوق الرفيع</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>بن عم حسين كافيه مختص في قلب شبين الكوم، بيقدم قهوة مختارة بعناية من أفضل مزارع البن في العالم — كولومبي وهندي وبرازيلي وإندونيسي.</p>
+        <p>المكان المثالي للأصحاب، للشغل، أو مجرد وقت هادي بعيد عن الضوضاء. كل كوب بيتعمل بأسلوب فني مميز — مش بس مشروب، دي تجربة كاملة.</p>
+        <div class="features">
+          <div class="feature">
+            <div class="feat-num">01</div>
+            <div><div class="feat-title">بن مختص من ٤ أصول</div><div class="feat-desc">كولومبي وهندي وبرازيلي وإندونيسي — كل بن بحكايته</div></div>
+          </div>
+          <div class="feature">
+            <div class="feat-num">02</div>
+            <div><div class="feat-title">خدمة محترمة وجو دافي</div><div class="feat-desc">المكان اللي بيجمع الناس ويخليهم يرجعوا</div></div>
+          </div>
+          <div class="feature">
+            <div class="feat-num">03</div>
+            <div><div class="feat-title">أسعار معقولة</div><div class="feat-desc">من ١ لـ ٢٠٠ جنيه — في حاجة لكل الأذواق</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-num">4.6</div><div class="stat-label">تقييم Google</div></div>
+        <div class="stat-card"><div class="stat-num">11</div><div class="stat-label">تقييم حقيقي</div></div>
+        <div class="stat-card"><div class="stat-num">4</div><div class="stat-label">أصول بن</div></div>
+        <div class="stat-card"><div class="stat-num">15+</div><div class="stat-label">صنف في المنيو</div></div>
+      </div>
     </div>
   </div>
-  <p class="menu-note-bottom">* الأسعار والمنيو تجريبية — ستتغير بالمحتوى الحقيقي</p>
-</div>
+</section>
 
-<div class="qr-section">
-  <div class="qr-box">
-    <canvas id="qrCanvas"></canvas>
+<!-- MENU -->
+<section class="menu-sec" id="menu">
+  <div class="container">
+    <div class="section-label">ما نقدمه</div>
+    <div class="section-title">المنيو</div>
+    <div class="menu-tabs">
+      <button class="tab active" onclick="showTab(this,'hot')">☕ ساخن</button>
+      <button class="tab" onclick="showTab(this,'cold')">🧊 بارد</button>
+      <button class="tab" onclick="showTab(this,'special')">✨ مختص</button>
+      <button class="tab" onclick="showTab(this,'food')">🥐 أكل</button>
+    </div>
+
+    <div class="menu-group visible" id="tab-hot">
+      <div class="menu-list">
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">إسبريسو</div><div class="mi-desc">شوت واحد — بن كولومبي مركز</div></div><div class="mi-price">٢٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">دبل إسبريسو</div><div class="mi-desc">شوتين لمحبي القوة</div></div><div class="mi-price">٤٠ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">لاتيه</div><div class="mi-desc">إسبريسو مع حليب مبخر طازج</div></div><div class="mi-price">٤٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">كابتشينو</div><div class="mi-desc">إسبريسو وحليب وفوم ناعم</div></div><div class="mi-price">٤٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">أمريكانو</div><div class="mi-desc">إسبريسو مع ماء ساخن</div></div><div class="mi-price">٣٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">موكا</div><div class="mi-desc">لاتيه مع شوكولاتة دافئة</div></div><div class="mi-price">٥٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">هندي سادة</div><div class="mi-desc">مزيج خاص من بن الهند</div></div><div class="mi-price">٣٥ ج</div></div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="tab-cold">
+      <div class="menu-list">
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">آيس لاتيه</div><div class="mi-desc">لاتيه بارد على الثلج</div></div><div class="mi-price">٥٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">كولد برو</div><div class="mi-desc">تخمير بارد ١٢ ساعة</div></div><div class="mi-price">٦٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">فرابتشينو</div><div class="mi-desc">مثلج ومخفوق بالكريمة</div></div><div class="mi-price">٧٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">آيس موكا</div><div class="mi-desc">شوكولاتة وإسبريسو بارد</div></div><div class="mi-price">٦٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">موهيتو</div><div class="mi-desc">نعناع وليمون طازج</div></div><div class="mi-price">٥٠ ج</div></div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="tab-special">
+      <div class="menu-list">
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">كولومبي سينجل أوريجن</div><div class="mi-desc">مزرعة Huila — حموضة مشمشية ناعمة</div></div><div class="mi-price">٨٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">إندونيسي سومطرة</div><div class="mi-desc">جسم ثقيل ونكهة ترابية عميقة</div></div><div class="mi-price">٨٠ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">برازيلي نوتس</div><div class="mi-desc">نكهة المكسرات والشوكولاتة الداكنة</div></div><div class="mi-price">٧٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">V60 Filter</div><div class="mi-desc">قهوة مفلترة يدوية — تجربة مختلفة</div></div><div class="mi-price">٧٠ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">بلند عم حسين</div><div class="mi-desc">مزيج خاص من ٤ أصول حصري</div></div><div class="mi-price">٧٠ ج</div></div>
+      </div>
+    </div>
+
+    <div class="menu-group" id="tab-food">
+      <div class="menu-list">
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">كرواسون زبدة</div><div class="mi-desc">طازج يومياً — فرنسي أصيل</div></div><div class="mi-price">٤٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">تشيز كيك</div><div class="mi-desc">بيتي الصنع بالتوت</div></div><div class="mi-price">٦٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">براوني شوكولاتة</div><div class="mi-desc">داكنة وغنية</div></div><div class="mi-price">٥٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">وافل</div><div class="mi-desc">مع عسل وكريمة</div></div><div class="mi-price">٧٥ ج</div></div>
+        <div class="menu-item"><div class="mi-info"><div class="mi-name">توست جبنة</div><div class="mi-desc">خبز محمص مع جبنة طازجة</div></div><div class="mi-price">٥٠ ج</div></div>
+      </div>
+    </div>
   </div>
-  <div class="qr-text">
-    <h3>امسح وافتح الموقع</h3>
-    <p>QR code احترافي جاهز للطباعة على المنيو والطاولة والسوشيال ميديا</p>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-sec" id="reviews">
+  <div class="container">
+    <div class="section-label">آراء الزباين</div>
+    <div class="section-title">بيقولوا إيه عنا</div>
+    <div class="reviews-top">
+      <div class="big-num">4.6</div>
+      <div class="rating-info">
+        <div class="rating-stars">★★★★★</div>
+        <div class="rating-label">١١ تقييم على Google</div>
+        <div class="bars">
+          <div class="bar-row">5★<div class="bar-track"><div class="bar-fill" style="width:75%"></div></div>75%</div>
+          <div class="bar-row">4★<div class="bar-track"><div class="bar-fill" style="width:15%"></div></div>15%</div>
+          <div class="bar-row">3★<div class="bar-track"><div class="bar-fill" style="width:7%"></div></div>7%</div>
+          <div class="bar-row">2★<div class="bar-track"><div class="bar-fill" style="width:2%"></div></div>2%</div>
+          <div class="bar-row">1★<div class="bar-track"><div class="bar-fill" style="width:1%"></div></div>1%</div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card">
+        <div class="rv-header">
+          <div class="rv-av">إ.ح</div>
+          <div><div class="rv-name">إبراهيم حبيب</div><div class="rv-date">منذ سنتين · دليل محلي</div></div>
+          <div class="rv-stars">★★★★★</div>
+        </div>
+        <div class="rv-text">أحلى بن ممكن تشربه. الجو هادي والخدمة ممتازة، بقيت أروحله كل أسبوع من غير ما أحس.</div>
+        <div class="rv-tags"><span class="rv-tag">خدمة ٥</span><span class="rv-tag">جو ٥</span></div>
+      </div>
+      <div class="review-card">
+        <div class="rv-header">
+          <div class="rv-av" style="background:#3a6a8a">ه.ه</div>
+          <div><div class="rv-name">هيثم هيثم</div><div class="rv-date">منذ سنتين · دليل محلي</div></div>
+          <div class="rv-stars">★★★★★</div>
+        </div>
+        <div class="rv-text">عم حسين حكايته ميعرفهاش إلا عشاق القهوة — البن بيتكلم عن نفسه بدون كلام.</div>
+        <div class="rv-tags"><span class="rv-tag">طعام ٥</span><span class="rv-tag">قهوة مختصة</span></div>
+      </div>
+      <div class="review-card">
+        <div class="rv-header">
+          <div class="rv-av" style="background:#5a3a8a">م.س</div>
+          <div><div class="rv-name">محمد سالم</div><div class="rv-date">منذ ٨ أشهر</div></div>
+          <div class="rv-stars">★★★★★</div>
+        </div>
+        <div class="rv-text">الكولد برو هنا على مستوى أي كافيه في القاهرة — ومش مصدق إني بقوله ده وأنا في شبين!</div>
+        <div class="rv-tags"><span class="rv-tag">كولد برو</span><span class="rv-tag">أسعار معقولة</span></div>
+      </div>
+      <div class="review-card">
+        <div class="rv-header">
+          <div class="rv-av" style="background:#2a7a5a">ن.ع</div>
+          <div><div class="rv-name">نور علي</div><div class="rv-date">منذ ٥ أشهر</div></div>
+          <div class="rv-stars">★★★★☆</div>
+        </div>
+        <div class="rv-text">المكان صغير بس فيه روح. اللاتيه كان تمام والموظفين محترمين. هرجعله تاني بالتأكيد.</div>
+        <div class="rv-tags"><span class="rv-tag">جو مريح</span><span class="rv-tag">هرجعله</span></div>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
-<a class="cta-btn" href="https://wa.me/01008094131">
-  📲 تواصل معنا عبر واتساب
-</a>
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="container">
+    <div class="section-label">وصّلنا</div>
+    <div class="section-title">تواصل معنا</div>
+    <div class="contact-grid">
+      <div class="info-cards">
+        <div class="info-card">
+          <div class="ic-icon">📍</div>
+          <div><div class="ic-label">العنوان</div><div class="ic-value">طلعت حرب، قسم شبين الكوم<br>منوفية — H273+32F</div></div>
+        </div>
+        <div class="info-card">
+          <div class="ic-icon">📞</div>
+          <div><div class="ic-label">تليفون / واتساب</div><div class="ic-value">010 08094131</div></div>
+        </div>
+        <div class="info-card">
+          <div class="ic-icon">🕐</div>
+          <div><div class="ic-label">مواعيد العمل</div><div class="ic-value">كل أيام الأسبوع<br>٩ صباحاً — ١٢ منتصف الليل</div></div>
+        </div>
+        <div class="info-card">
+          <div class="ic-icon">💰</div>
+          <div><div class="ic-label">متوسط الأسعار</div><div class="ic-value">١ – ٢٠٠ جنيه للشخص</div></div>
+        </div>
+      </div>
+      <div class="cta-box">
+        <h3>تعالى اشرب معنا ☕</h3>
+        <p>في أي وقت من ٩ الصبح لـ ١٢ الليل — احنا مستنينك</p>
+        <a class="wa-btn" href="https://wa.me/01008094131">📲 تواصل على واتساب</a>
+        <a class="map-btn" href="https://maps.google.com/?q=بن+عم+حسين+شبين+الكوم">📍 افتح في Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
 
-<div class="footer">
-  * هذا الموقع ديمو تجريبي فقط — يعرض الشكل العام للموقع الحقيقي
-</div>
+<footer>
+  بن عم حسين · شبين الكوم · المنوفية &nbsp;|&nbsp; * ديمو تجريبي للعرض فقط
+</footer>
 
 <script>
-  QRCode.toCanvas(document.getElementById('qrCanvas'), window.location.href || 'https://ben-om-hussein.com', {
-    width: 130,
-    margin: 1,
-    color: { dark: '#1a0a00', light: '#ffffff' }
-  });
+function showTab(btn,cat){
+  document.querySelectorAll('.menu-group').forEach(g=>g.classList.remove('visible'));
+  document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+cat).classList.add('visible');
+  btn.classList.add('active');
+}
+window.addEventListener('scroll',()=>{
+  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
+});
 </script>
 </body>
 </html>
