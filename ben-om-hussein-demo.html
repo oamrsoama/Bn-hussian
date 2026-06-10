@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>بن عم حسين — ديمو</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f7f3ee; color: #1a0a00; }
+
+  .demo-banner {
+    background: #c8782a;
+    color: #fff;
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .hero {
+    background: #1a0a00;
+    color: #fff;
+    padding: 60px 24px 48px;
+    text-align: center;
+  }
+  .logo-circle {
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    background: #c8782a;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .hero h1 { font-size: 30px; font-weight: 700; margin-bottom: 8px; }
+  .hero .subtitle { font-size: 15px; color: #c8a880; margin-bottom: 16px; }
+  .stars { color: #f0b429; font-size: 20px; margin-bottom: 4px; }
+  .rating-text { font-size: 13px; color: #c8a880; margin-bottom: 20px; }
+  .badge-row { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+  .badge {
+    background: rgba(200,120,42,0.25);
+    border: 1px solid #c8782a;
+    color: #f0c080;
+    border-radius: 20px;
+    padding: 4px 14px;
+    font-size: 13px;
+  }
+
+  .section {
+    background: #fff;
+    margin: 16px;
+    border-radius: 16px;
+    padding: 24px;
+    border: 1px solid #ede8e0;
+  }
+  .section-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 18px;
+  }
+  .info-row {
+    display: flex; gap: 14px; align-items: flex-start;
+    margin-bottom: 16px; font-size: 15px;
+  }
+  .info-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .info-label { font-size: 12px; color: #888; margin-top: 2px; }
+  .open-tag {
+    display: inline-block;
+    background: #e8f5e0;
+    color: #3a7a1a;
+    font-size: 12px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  .menu-card {
+    background: #faf7f2;
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid #ede8e0;
+    text-align: center;
+  }
+  .menu-emoji { font-size: 30px; margin-bottom: 8px; }
+  .menu-name { font-size: 14px; font-weight: 700; color: #1a0a00; }
+  .menu-price { font-size: 13px; color: #c8782a; font-weight: 600; margin-top: 4px; }
+  .menu-note { font-size: 12px; color: #888; margin-top: 2px; }
+  .menu-note-bottom {
+    font-size: 11px; color: #aaa; text-align: center; margin-top: 12px;
+  }
+
+  .qr-section {
+    background: #1a0a00;
+    margin: 16px;
+    border-radius: 16px;
+    padding: 28px 24px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .qr-box {
+    background: #fff;
+    border-radius: 10px;
+    padding: 10px;
+    flex-shrink: 0;
+  }
+  .qr-text h3 { font-size: 18px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .qr-text p { font-size: 13px; color: #c8a880; line-height: 1.6; }
+
+  .cta-btn {
+    display: block;
+    margin: 0 16px 16px;
+    background: #c8782a;
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+  }
+  .cta-btn:hover { background: #a8621f; }
+
+  .footer {
+    text-align: center;
+    padding: 24px 16px;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  @media (max-width: 480px) {
+    .qr-section { justify-content: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">⚠️ هذا ديمو تجريبي — يعرض الشكل الأساسي للموقع قبل إضافة التفاصيل الحقيقية</div>
+
+<div class="hero">
+  <div class="logo-circle">ع.ح</div>
+  <h1>بن عم حسين</h1>
+  <p class="subtitle">كولومبي · هندي · برازيلي · إندونيسي</p>
+  <div class="stars">★★★★½</div>
+  <p class="rating-text">4.6 من 11 تقييم على Google</p>
+  <div class="badge-row">
+    <span class="badge">قهوة مختصة</span>
+    <span class="badge">جو مريح</span>
+    <span class="badge">شبين الكوم</span>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">معلومات المحل</div>
+  <div class="info-row">
+    <span class="info-icon">📍</span>
+    <div>
+      <div>طلعت حرب، قسم شبين الكوم</div>
+      <div class="info-label">منوفية</div>
+    </div>
+  </div>
+  <div class="info-row">
+    <span class="info-icon">🕐</span>
+    <div>
+      <div class="open-tag">مفتوح</div>
+      <div>٩ صباحاً – ١٢ منتصف الليل</div>
+    </div>
+  </div>
+  <div class="info-row">
+    <span class="info-icon">📞</span>
+    <div>
+      <div>010 08094131</div>
+      <div class="info-label">اتصل أو واتساب</div>
+    </div>
+  </div>
+  <div class="info-row">
+    <span class="info-icon">💰</span>
+    <div>
+      <div>١ – ٢٠٠ جنيه للشخص</div>
+      <div class="info-label">متوسط السعر</div>
+    </div>
+  </div>
+</div>
+
+<div class="section">
+  <div class="section-title">من المنيو</div>
+  <div class="menu-grid">
+    <div class="menu-card">
+      <div class="menu-emoji">☕</div>
+      <div class="menu-name">إسبريسو</div>
+      <div class="menu-price">٢٥ جنيه</div>
+      <div class="menu-note">بن كولومبي</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-emoji">🥛</div>
+      <div class="menu-name">لاتيه</div>
+      <div class="menu-price">٤٥ جنيه</div>
+      <div class="menu-note">حليب طازج</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-emoji">🫖</div>
+      <div class="menu-name">هندي</div>
+      <div class="menu-price">٣٥ جنيه</div>
+      <div class="menu-note">مزيج خاص</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-emoji">🧊</div>
+      <div class="menu-name">آيس كوفي</div>
+      <div class="menu-price">٥٥ جنيه</div>
+      <div class="menu-note">بارد ومنعش</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-emoji">🫘</div>
+      <div class="menu-name">برازيلي</div>
+      <div class="menu-price">٣٠ جنيه</div>
+      <div class="menu-note">بن أصيل</div>
+    </div>
+    <div class="menu-card">
+      <div class="menu-emoji">🌿</div>
+      <div class="menu-name">إندونيسي</div>
+      <div class="menu-price">٤٠ جنيه</div>
+      <div class="menu-note">نكهة خاصة</div>
+    </div>
+  </div>
+  <p class="menu-note-bottom">* الأسعار والمنيو تجريبية — ستتغير بالمحتوى الحقيقي</p>
+</div>
+
+<div class="qr-section">
+  <div class="qr-box">
+    <canvas id="qrCanvas"></canvas>
+  </div>
+  <div class="qr-text">
+    <h3>امسح وافتح الموقع</h3>
+    <p>QR code احترافي جاهز للطباعة على المنيو والطاولة والسوشيال ميديا</p>
+  </div>
+</div>
+
+<a class="cta-btn" href="https://wa.me/01008094131">
+  📲 تواصل معنا عبر واتساب
+</a>
+
+<div class="footer">
+  * هذا الموقع ديمو تجريبي فقط — يعرض الشكل العام للموقع الحقيقي
+</div>
+
+<script>
+  QRCode.toCanvas(document.getElementById('qrCanvas'), window.location.href || 'https://ben-om-hussein.com', {
+    width: 130,
+    margin: 1,
+    color: { dark: '#1a0a00', light: '#ffffff' }
+  });
+</script>
+</body>
+</html>
